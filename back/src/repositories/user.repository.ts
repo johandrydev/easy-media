@@ -15,6 +15,10 @@ export class UserRepository implements IUserRepository {
     dbconn();
     return await userModel.find();
   }
+  async findByName(name: string): Promise<IUser | null> {
+    dbconn();
+    return await userModel.findOne({ name });
+  }
   async findByEmail(email: string): Promise<IUser | null> {
     dbconn();
     return await userModel.findOne({ email });

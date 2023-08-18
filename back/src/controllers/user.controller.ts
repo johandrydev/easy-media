@@ -23,7 +23,7 @@ export class UserController {
       if (error) return res.status(400).json({ message: error.details[0].message });
 
       const user = await this.userRepository.create(body);
-      res.status(201).send(user);
+      res.status(201).json({ data: user, message: 'User created suscessfully' });
     } catch (error) {
       next(error);
     }
@@ -32,7 +32,7 @@ export class UserController {
   getUsers = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const users = await this.userRepository.findAll();
-      res.send(users);
+      res.json({ data: users });
     } catch (error) {
       next(error);
     }
@@ -42,7 +42,7 @@ export class UserController {
     try {
       const user = await this.userRepository.findById(params.id);
       if (!user) return res.status(404).json({ message: 'User not found' });
-      res.send(user);
+      res.json({ data: user });
     } catch (error) {
       next(error);
     }
@@ -55,7 +55,7 @@ export class UserController {
 
       const user = await this.userRepository.update(params.id, body);
       if (!user) return res.status(404).json({ message: 'User not found' });
-      res.send(user);
+      res.json({ data: user, message: 'User updated suscessfully' });
     } catch (error) {
       next(error);
     }
@@ -65,7 +65,7 @@ export class UserController {
     try {
       const user = await this.userRepository.delete(params.id);
       if (!user) return res.status(404).json({ message: 'User not found' });
-      res.send(user);
+      res.json({ message: 'User deleted suscessfully' });
     } catch (error) {
       next(error);
     }
