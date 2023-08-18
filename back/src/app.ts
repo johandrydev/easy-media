@@ -5,6 +5,7 @@ import 'dotenv/config';
 
 import { authRoutes } from "./routes/auth.route";
 import { userRegisterRoute, userRoutes } from "./routes/user.route";
+import { postRoutes } from "./routes/post.route";
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -16,6 +17,7 @@ app.use(json());
 app.use('/api', authRoutes);
 app.use('/api', userRegisterRoute);
 app.use('/api', verifyToken, userRoutes);
+app.use('/api', verifyToken, postRoutes);
 
 // Basic error handler
 const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
