@@ -4,10 +4,8 @@ import logo from '../../assets/logo-black 1.png'
 
 export function Navbar () {
   const setLogout = useUserStore((state) => state.setLogout)
-  const user = useUserStore((state) => state.user)
   const navigate = useNavigate()
 
-  console.log(user)
   const onLogout = () => {
     setLogout()
     navigate('/auth/login')

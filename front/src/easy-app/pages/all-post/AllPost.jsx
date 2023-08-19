@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react'
 import { Card } from '../../components/Card'
 import emptyIcon from '../../../assets/empty_icon.png'
 
-// validate date not in the future (yup)
 const schema = yup.object({
   date: yup.date().notRequired().max(new Date(), 'Date not in the future'),
   title: yup.string().notRequired()
@@ -34,7 +33,7 @@ export function AllPost () {
   }, [])
 
   return (
-    <section>
+    <section className='easy-section'>
       <header className='easy-header'>
         <h1>All Publications</h1>
         <form className='easy-form' onSubmit={onSubmit}>

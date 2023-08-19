@@ -1,14 +1,14 @@
 import Swal from 'sweetalert2'
 
-export const successAlert = ({ text = '', title = '', showConfirmButton = false, position = 'center', timer = 1999 }) => {
+export const successAlert = ({ text = '', title = '', showConfirmButton = false, position = 'top', timer = 1999 }) => {
   showAlert({ text, title, showConfirmButton, position, timer, iconColor: '#58BCDB' })
 }
 
-export const errorAlert = ({ text = '', title = '', showConfirmButton = false, timer = 1999, position = 'center' }) => {
+export const errorAlert = ({ text = '', title = '', showConfirmButton = false, timer = 1999, position = 'top' }) => {
   showAlert({ icon: 'error', text, title, showConfirmButton, position, timer, iconColor: '#C646AA' })
 }
 
-const showAlert = ({ icon = 'success', text = '', title = '', showConfirmButton = false, position = 'center', timer = 1999, iconColor }) => {
+const showAlert = ({ icon = 'success', text = '', title = '', showConfirmButton = false, position = 'top', timer = 1999, iconColor }) => {
   Swal.fire({
     position,
     icon,
