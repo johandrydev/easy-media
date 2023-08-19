@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Loto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -14,13 +14,18 @@
   -webkit-text-size-adjust: 100%;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   display: flex;
   place-items: center;
   width: 100vw;
-  min-width: 320px;
-  min-height: 100vh;
+  height: 100vh;
   background-color: #9B8ADB;
 }
 
@@ -31,7 +36,7 @@ section {
   justify-content: center;
   padding: 0 1rem;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 }
 
 main {
@@ -46,10 +51,33 @@ main {
   min-height: 500px;
 }
 
+img {
+  width: 196px;
+  height: 196px;
+}
+
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-  margin: 0.5em 0;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  margin: 0.2em 0;
+}
+
+h2 {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0.2em 0;
+}
+
+h3 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0.2em 0;
 }
 
 form {
@@ -63,7 +91,7 @@ form {
   position: relative;
 }
 
-.form-control > label {
+.form-control>label {
   color: #0E2248;
   font-size: 0.8em;
   font-weight: 700;
@@ -75,7 +103,7 @@ form {
   border: none;
   border-bottom: 1px solid #fff;
   width: 100%;
-  min-width: 250px;
+  font-size: 18px;
 }
 
 .form-control input::placeholder {
@@ -89,7 +117,6 @@ form {
 
 .form-control>span {
   position: absolute;
-  color: #FE4B4B;
   font-size: 0.6em;
   line-height: 1.5;
   height: 100%;
@@ -110,18 +137,55 @@ form {
   height: 32px;
 }
 
-.button1 {
-  background-color: #C645A9;
+.btn-primary {
+  border-radius: 20px;
+  color: white;
+  padding: 5px;
+  border: 0;
+  width: 100%;
+  font-size: 17px;
+  background: linear-gradient(270deg, #C645A9 0%, #58BBDB 100%);
 }
 
-.gris {
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.danger-text {
+  color: #FE4B4B;
+}
+
+.text-gris {
   color: #B7B7B7;
+}
+
+.text-cian {
+  color: #48E3BE;
+}
+
+.footer-text {
   font-size: 10px;
   font-weight: 500;
 }
 
-.cian {
-  color: #48E3BE;
-  font-size: 10px;
-  font-weight: 500;
+footer {
+  margin-top: 20px;
+}
+
+@media (min-width: 600px) {
+  main {
+    min-width: 350px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  .form-control input {
+    min-width: 250px;
+  }
 }

@@ -9,12 +9,11 @@ export function FormInput ({
   error,
   ...props
 }) {
-  console.log('error', error)
   return (
     <div className='form-control'>
       <label htmlFor={name}>{label}</label>
       <input type="text" placeholder={placeholder} name={name} {...props} {...(register && register(name, rules))} />
-      <span>{error}</span>
+      <span className='danger-text'>{error}</span>
     </div>
   )
 }

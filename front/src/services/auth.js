@@ -14,3 +14,18 @@ export const loginRequest = async (data) => {
     return json
   } catch (error) { throw new Error(error.message) }
 }
+
+export const registerRequest = async (data) => {
+  try {
+    const response = await request({
+      endpoint: '/user',
+      data,
+      method: 'POST'
+    })
+    const json = await response.json()
+    if (!response.ok) {
+      throw new Error(json.message)
+    }
+    return json
+  } catch (error) { throw new Error(error.message) }
+}

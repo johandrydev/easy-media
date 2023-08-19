@@ -23,6 +23,9 @@ dependencies:
   react-router-dom:
     specifier: 6.15.0
     version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
+  sweetalert2:
+    specifier: ^11.7.25
+    version: 11.7.25
   yup:
     specifier: 1.2.0
     version: 1.2.0
@@ -2013,6 +2016,10 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
     dev: true
+
+  /sweetalert2@11.7.25:
+    resolution: {integrity: sha512-V4qYDr8cinCFs5apQEdjkWUjfNiUW1WTOTY1YkPoV723h1YiOoUycpxe4xrO3Sg0GLvkwHGrynRT2mBPoJ8Lhw==}
+    dev: false
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
