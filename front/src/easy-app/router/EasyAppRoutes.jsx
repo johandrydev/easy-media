@@ -1,14 +1,17 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { MyPost } from '../pages/my-post/MyPost'
+import { AllPost } from '../pages/all-post/AllPost'
+import { Navbar } from '../components/Navbar'
 // import { JournalPage } from "../pages/JournalPage"
 
 export const EasyAppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<MyPost />} />
-      {/* <Route path="/" element={ <JournalPage /> } /> */}
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<AllPost />} />
 
-      <Route path="/*" element={<Navigate to="/" />} />
-    </Routes>
+        <Route path="/*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   )
 }

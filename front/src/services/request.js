@@ -30,7 +30,7 @@ export const requestToken = async ({ endpoint, data, params, method = 'GET' }) =
 
   const headers = {
     'Content-type': 'application/json',
-    Authorization: `Bearer ${user.token}`
+    Authorization: `Bearer ${user?.state?.user?.data?.token}`
   }
 
   const url = `${baseUrl}${endpoint}`
