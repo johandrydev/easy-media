@@ -242,6 +242,60 @@ footer {
   margin-top: 20px;
 }
 
+.navbar-hamburger {
+  display: none;
+}
+
+/* Estilos para el botón hamburguesa */
+.hamburger-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  height: 50px;
+  width: 50px;
+}
+
+/* Estilos para el ícono hamburguesa */
+.hamburger-icon {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #0E2248;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+/* Estilos para cambiar el ícono a una "X" cuando se abre el menú */
+.hamburger-btn.active .hamburger-icon {
+  background-color: transparent;
+}
+
+.hamburger-btn.active .hamburger-icon:before,
+.hamburger-btn.active .hamburger-icon:after {
+  top: 0;
+  background-color: #0E2248;
+}
+
+.hamburger-icon:before,
+.hamburger-icon:after {
+  content: '';
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #0E2248;
+  position: absolute;
+  transition: top 0.3s 0.2s ease, background-color 0.3s ease;
+}
+
+.hamburger-icon:before {
+  top: -8px;
+}
+
+.hamburger-icon:after {
+  top: 8px;
+}
+
 @media (min-width: 600px) {
   main {
     min-width: 350px;
@@ -253,5 +307,33 @@ footer {
 
   .form-control input {
     min-width: 250px;
+  }
+}
+
+/* Estilos para el menú en pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar-hamburger {
+    display: block;
+    text-align: right;
+    padding: 5px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+  }
+
+  .navbar-items {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    background-color: #fff;
+    height: 120px;
+    z-index: 100;
+  }
+
+  .navbar-items.active {
+    display: block;
   }
 }

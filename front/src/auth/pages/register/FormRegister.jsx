@@ -48,6 +48,7 @@ export function FormRegister () {
       <FormInput
         name='name'
         label='Full Name'
+        autocomplete="off"
         placeholder='Johandry Mora'
         register={register}
         error={errors.name && errors.name.message}
@@ -55,6 +56,7 @@ export function FormRegister () {
       <FormInput
         name='email'
         label='Email'
+        autocomplete="off"
         placeholder='johandry@contact.com'
         register={register}
         error={errors.email && errors.email.message}

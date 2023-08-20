@@ -23,7 +23,6 @@ export function MyPost () {
     if (data?.date) {
       data.date = data.date ? new Date(data.date).toISOString() : null
     }
-
     await getOwnPosts(data)
       .then(response => setPosts(response.data))
       .catch(error => console.log(error))
@@ -55,11 +54,12 @@ export function MyPost () {
         {posts.map(({ _id, title, message, date, user }) => (
           <Card
             key={_id}
-            title={title}
             content={message}
             date={date}
             name={user?.name}
-          />
+          >
+            {title}
+          </Card>
         ))}
         {posts.length === 0 && (
           <div className='easy-empty'>

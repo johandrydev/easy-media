@@ -9,14 +9,21 @@ export function debounce (func, timeout = 600) {
 }
 
 export const request = async ({ endpoint, data, params, method = 'GET' }) => {
-  const url = `${baseUrl}${endpoint}`
-  const request = { url }
+  let url = `${baseUrl}${endpoint}`
   const headers = {
     'Content-type': 'application/json'
   }
   // If params exist, add them to the url
   if (params) {
-    request.url = `${url}?${new URLSearchParams(params)}`
+    const urlParams = new URLSearchParams()
+
+    for (const key in params) {
+      if (params[key]) {
+        urlParams.append(key, params[key])
+      }
+    }
+    url += `?${urlParams.toString()}`
+    console.log(url)
   }
   if (method === 'GET') {
     return fetch(url, { headers })
@@ -47,7 +54,9 @@ export const requestToken = async ({ endpoint, data, params, method = 'GET' }) =
     const urlParams = new URLSearchParams()
 
     for (const key in params) {
-      urlParams.append(key, params[key])
+      if (params[key]) {
+        urlParams.append(key, params[key])
+      }
     }
     url += `?${urlParams.toString()}`
     console.log(url)

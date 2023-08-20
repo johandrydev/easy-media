@@ -8,6 +8,7 @@ import { FormTextArea } from '../../components/FormTextArea'
 import { useUserStore } from '../../../stores/user.store'
 import { createPost } from '../../../services/publications'
 import { errorAlert, successAlert } from '../../../services/sweetalert'
+import { useState } from 'react'
 
 const schema = yup.object({
   title: yup.string().required(),
@@ -20,6 +21,7 @@ const initialValues = {
 }
 export function CreatePost () {
   const user = useUserStore(state => state.user)
+  const [date] = useState(new Date().toISOString())
   const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm({
     resolver: yupResolver(schema),
     defaultValues: initialValues
@@ -67,11 +69,12 @@ export function CreatePost () {
       </header>
       <main className='easy-main'>
         <Card
-          title={title || 'Your post title'}
           content={message || 'Create a message to share with your friends'}
-          date={new Date().toLocaleDateString()}
+          date={date}
           name={user?.data?.user?.name}
-        />
+        >
+          {title || 'Your post title'}
+        </Card>
       </main>
     </section>
   )

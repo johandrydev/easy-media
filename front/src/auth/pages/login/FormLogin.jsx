@@ -10,7 +10,7 @@ import { errorAlert } from '../../../services/sweetalert'
 
 const schema = yup.object({
   email: yup.string().required().email(),
-  password: yup.string().required()
+  password: yup.string().required().min(8, 'Password must have at least 8 characters')
 }).required()
 
 export function FormLogin () {
@@ -35,6 +35,7 @@ export function FormLogin () {
         name='email'
         label='Email'
         placeholder='example@email.com'
+        autocomplete="off"
         register={register}
         error={errors.email && errors.email.message}
       />

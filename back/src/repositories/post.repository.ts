@@ -46,8 +46,7 @@ export class PostRepository implements IPostRepository {
       if ($and.length === 0) {
         return await postModel.find().populate('user');
       } else if ($and.length === 1) {
-        const filter = $and[0]
-        return await postModel.find({ filter }).populate('user');
+        return await postModel.find($and[0]).populate('user');
       }
 
       return postModel.find({ $and }).populate('user');

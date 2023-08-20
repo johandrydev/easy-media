@@ -3,7 +3,7 @@
 }
 
 .easy-header {
-  margin-top: 80px;
+  margin-top: 60px;
   display: flex;
   width: 100%;
   max-width: 400px;
@@ -129,6 +129,10 @@ article>.easy-card-footer>.name-card {
   line-height: normal;
 }
 
+.highlight {
+  background-color: #c646aa;
+}
+
 @media (min-width: 600px) {
   .easy-main {
     flex-wrap: wrap;
@@ -136,6 +140,12 @@ article>.easy-card-footer>.name-card {
 
   article {
     max-width: 250px;
+  }
+}
+
+@media (min-width: 768px) {
+  .easy-header {
+    margin-top: 80px;
   }
 }
 
