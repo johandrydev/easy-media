@@ -12,37 +12,42 @@ export class PostRepository implements IPostRepository {
   }
   async findAll(params?: IParams): Promise<IPost[]> {
     dbconn();
-    if (params.user || params.date || params.title || params.userId) {
+    if (params.user || params.date || params.title) {
       const $and = [];
 
       if (params.date) {
-        $and.push({ date: { $gte: params.date } });
+        const startDate = new Date(params.date);
+        const endDate = new Date(params.date);
+        endDate.setDate(endDate.getDate() + 1);
+        $and.push({ date: { $gte: startDate, $lt: endDate } })
       }
 
       if (params.title) {
-        $and.push({ title: { $regex: params.title, $options: 'i' } });
+        $and.push({ title: { $regex: params.title, $options: 'i' } })
       }
 
       if (params.user) {
         const validation = {
           path: 'user',
-          match: { name: { $regex: params.user, $options: 'i' } }
+          match: { _id: params.user }
         }
-        const postResult = ($and.length > 0)
-          ? await postModel.find({ $and }).populate(validation)
-          : await postModel.find().populate(validation);
 
-        return postResult.filter(post => post.user !== null);
-      } else if (params.userId) {
-        const validation = {
-          path: 'user',
-          match: { _id: params.userId }
+        let postResult = [];
+        if ($and.length === 0) {
+          postResult = await postModel.find().populate(validation);
+        } else if ($and.length === 1) {
+          postResult = await postModel.find($and[0]).populate(validation);
+        } else {
+          postResult = await postModel.find({ $and }).populate(validation);
         }
-        const postResult = ($and.length > 0)
-          ? await postModel.find({ $and }).populate(validation)
-          : await postModel.find().populate(validation);
-
         return postResult.filter(post => post.user !== null);
+      }
+
+      if ($and.length === 0) {
+        return await postModel.find().populate('user');
+      } else if ($and.length === 1) {
+        const filter = $and[0]
+        return await postModel.find({ filter }).populate('user');
       }
 
       return postModel.find({ $and }).populate('user');

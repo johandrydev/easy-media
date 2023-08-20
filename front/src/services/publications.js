@@ -16,6 +16,7 @@ export const getPosts = async (params) => {
 
 export const getOwnPosts = async (params) => {
   try {
+    console.log(params)
     const response = await requestToken({
       endpoint: '/post/own',
       params

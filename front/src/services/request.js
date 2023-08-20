@@ -1,5 +1,13 @@
 const baseUrl = 'http://localhost:3001/api'
 
+export function debounce (func, timeout = 600) {
+  let timer
+  return (...args) => {
+    clearTimeout(timer)
+    timer = setTimeout(() => { func.apply(this, args) }, timeout)
+  }
+}
+
 export const request = async ({ endpoint, data, params, method = 'GET' }) => {
   const url = `${baseUrl}${endpoint}`
   const request = { url }
@@ -33,11 +41,16 @@ export const requestToken = async ({ endpoint, data, params, method = 'GET' }) =
     Authorization: `Bearer ${user?.state?.user?.data?.token}`
   }
 
-  const url = `${baseUrl}${endpoint}`
-  const request = { url }
+  let url = `${baseUrl}${endpoint}`
   // If params exist, add them to the url
   if (params) {
-    request.url = `${url}?${new URLSearchParams(params)}`
+    const urlParams = new URLSearchParams()
+
+    for (const key in params) {
+      urlParams.append(key, params[key])
+    }
+    url += `?${urlParams.toString()}`
+    console.log(url)
   }
   if (method === 'GET') {
     return fetch(url, { headers })

@@ -7,6 +7,7 @@ import { getOwnPosts } from '../../../services/publications'
 import { useEffect, useState } from 'react'
 import { Card } from '../../components/Card'
 import emptyIcon from '../../../assets/empty_icon.png'
+import { debounce } from '../../../services/request'
 
 const schema = yup.object({
   date: yup.date().notRequired().max(new Date(), 'Date not in the future')
@@ -18,11 +19,15 @@ export function MyPost () {
     resolver: yupResolver(schema)
   })
 
-  const handlePost = async (data) => {
+  const handlePost = debounce(async (data) => {
+    if (data?.date) {
+      data.date = data.date ? new Date(data.date).toISOString() : null
+    }
+
     await getOwnPosts(data)
       .then(response => setPosts(response.data))
       .catch(error => console.log(error))
-  }
+  })
 
   // give me the implementation of a debounce to search the data
   const onSubmit = handleSubmit(handlePost)
@@ -35,7 +40,7 @@ export function MyPost () {
     <section className='easy-section'>
       <header className='easy-header'>
         <h1>My Publications</h1>
-        <form className='easy-form' onSubmit={onSubmit}>
+        <form className='easy-form' onChange={onSubmit}>
           <FormInput
             name='date'
             type='date'

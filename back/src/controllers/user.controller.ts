@@ -4,9 +4,9 @@ import Joi from 'joi';
 import { IUser } from "../types/user.type";
 
 const schemaUserFull = Joi.object<IUser>({
-    name: Joi.string().regex(/^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/g).required(),
+    name: Joi.string().regex(/^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/).required(),
     email: Joi.string().required().email(),
-    password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/g).required()
+    password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/).required()
 })
 
 const schemaUser = Joi.object<IUser>({

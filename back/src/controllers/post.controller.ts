@@ -39,8 +39,10 @@ export class PostController {
 
   getOwnPosts = async (req, res: Response, next: NextFunction) => {
     try {
-      const userId = req.user._id;
-      const posts = await this.postRepository.findAll({ userId });
+      const { date } = req.query;
+      const user = req.user._id;
+      console.log(user);
+      const posts = await this.postRepository.findAll({ user, date });
       res.json({ data: posts });
     } catch (error) {
       next(error);
