@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  app:
+    depends_on:
+      - mongo
+    image: easy-media:0.0.1
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - "PORT=3001"
+      - "TOKEN_SECRET=secret_word"
+      - "MONGO_URI=mongodb://mongo:27017/easy-media"
+    ports:
+      - "3001:3001"
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"

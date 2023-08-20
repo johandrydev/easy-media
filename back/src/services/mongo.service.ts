@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const dbconn = () => {
-  const uri = `mongodb://localhost:27017/easy-media`;
+  const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/easy-media';
   mongoose
     .connect(uri)
     .then(() => console.log("Connected to MongoDB"))
