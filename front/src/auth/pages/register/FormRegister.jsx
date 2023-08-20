@@ -12,12 +12,11 @@ const getCharacterValidationError = (str) => {
 }
 
 const schema = yup.object({
-  name: yup.string().required(),
+  name: yup.string().matches(/^[A-Za-záéíóúüñÁÉÍÓÚÜÑ\s]+$/, 'Name must be only letters').required(),
   email: yup.string().required().email(),
   password: yup.string()
     .required()
     .min(8, 'Password must have at least 8 characters')
-    // different error messages for different requirements
     .matches(/[0-9]/, getCharacterValidationError('digit'))
     .matches(/[a-z]/, getCharacterValidationError('lowercase'))
     .matches(/[A-Z]/, getCharacterValidationError('uppercase')),
